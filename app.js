@@ -39,7 +39,7 @@ controller.setupWebserver(process.env.PORT || 5000, function (err, webserver) {
     });
 });
 
-// Spin up the server
-//app.listen(app.get('port'), function () {
-//    console.log('running on port', app.get('port'))
-//})
+
+controller.on('facebook_optin', function (bot, message) {
+    bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
+});
