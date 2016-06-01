@@ -43,3 +43,31 @@ controller.setupWebserver(process.env.PORT || 5000, function (err, webserver) {
 controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
 });
+
+
+controller.hears(['hello', 'hi'], 'message_recieved', function (bot, message) {
+    bot.reply(message, 'Hello');
+    bot.reply(message, ' my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
+    ;
+    bot.reply(message, {
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'button',
+                text: 'which do you prefer',
+                buttons: [
+                    {
+                        type: 'postback',
+                        title: 'Cats',
+                        payload: 'shoe_cat'
+                    },
+                    {
+                        type: 'postback',
+                        title: 'Dogs',
+                        payload: 'show_dog'
+                    }
+                ]
+            }
+        }
+    })
+})
