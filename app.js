@@ -53,7 +53,6 @@ controller.on('facebook_option', function (bot, message) {
 controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
     bot.reply(message, 'Hello');
     bot.reply(message, ' my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
-    ;
     bot.reply(message, {
         attachment: {
             type: 'template',
@@ -81,7 +80,6 @@ controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
 controller.hears(['cookies'], 'message_received', function (bot, message) {
 
     bot.startConversation(message, function (err, convo) {
-
         convo.say('Did someone say cookies!?!!');
         convo.ask('What is your favorite type of cookie?', function (response, convo) {
             convo.say('Golly, I love ' + response.text + ' too!!!');
@@ -90,3 +88,35 @@ controller.hears(['cookies'], 'message_received', function (bot, message) {
     });
 });
 
+
+controller.on('facebook_postback', function (bot, message) {
+    switch (message.payload) {
+        case 'show_cat':
+            bot.reply(message, {
+                attachment: {
+                    type: 'template',
+                    payload: {
+                        type: 'image',
+                        payload: {
+                            url: 'http://gph.is/1P7et4J'
+                        }
+                    }
+                }
+            })
+            break
+        case 'show_dog':
+            bot.reply(message, {
+                    attachment: {
+                        payload: {
+
+                            type: 'image',
+                            payload: {
+                                url: 'http://gph.is/1g2NU59'
+                            }
+                        }
+                    }
+                }
+            )
+            break
+    }
+});
