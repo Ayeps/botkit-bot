@@ -1,24 +1,24 @@
 /**
  * Created by Softmasters on 6/1/2016.
  */
-//var express = require('express')
-var bodyParser = require('body-parser')
-var request = require('request')
-var Botkit = require('botkit')
-//var app = express()
+var express = require('express');
+var bodyParser = require('body-parser');
+var request = require('request');
+var Botkit = require('botkit');
+var app = express();
 
-//app.set('port', (process.env.PORT || 5000))
-//
-//// Process application/x-www-form-urlencoded
-//app.use(bodyParser.urlencoded({extended: false}))
-//
-//// Process application/json
-//app.use(bodyParser.json())
-//
-//// Index route
-//app.get('/', function (req, res) {
-//    res.send('Hello world, I am a chat bot')
-//})
+app.set('port', (process.env.PORT || 5000));
+
+// Process application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: false}))
+
+// Process application/json
+app.use(bodyParser.json());
+
+// Index route
+app.get('/', function (req, res) {
+    res.send('Hello world, I am a chat bot')
+})
 
 
 //botkit coed
@@ -39,13 +39,18 @@ controller.setupWebserver(process.env.PORT || 5000, function (err, webserver) {
     });
 });
 
+//controller.setupWebserver(webserverPort, function (pError, app) {
+//    controller.createWebhookEndpoints(app);
+//    console.log('This bot is online!!!');
+//});
 
-controller.on('facebook_optin', function (bot, message) {
+
+controller.on('facebook_option', function (bot, message) {
     bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
 });
 
 
-controller.hears(['hello', 'hi'], 'message_recieved', function (bot, message) {
+controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
     bot.reply(message, 'Hello');
     bot.reply(message, ' my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
     ;
@@ -84,3 +89,4 @@ controller.hears(['cookies'], 'message_received', function (bot, message) {
         });
     });
 });
+
