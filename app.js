@@ -39,36 +39,26 @@ controller.setupWebserver(process.env.PORT || 5000, function (err, webserver) {
     });
 });
 
-//controller.setupWebserver(webserverPort, function (pError, app) {
-//    controller.createWebhookEndpoints(app);
-//    console.log('This bot is online!!!');
-//});
-
 
 controller.on('facebook_option', function (bot, message) {
-    bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
-});
-
-
-controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
     bot.reply(message, 'Hello');
-    bot.reply(message, ' my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
-    bot.reply(message, {
+    bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
+    bot.reply(message,{
         attachment: {
             type: 'template',
             payload: {
                 template_type: 'button',
-                text: 'which do you prefer',
+                text: 'Option',
                 buttons: [
                     {
                         type: 'postback',
-                        title: 'Cats',
-                        payload: 'shoe_cat'
+                        title: 'yes',
+                        payload: 'yes'
                     },
                     {
                         type: 'postback',
-                        title: 'Dogs',
-                        payload: 'show_dog'
+                        title: 'yes',
+                        payload: 'yes'
                     }
                 ]
             }
@@ -91,32 +81,11 @@ controller.hears(['cookies'], 'message_received', function (bot, message) {
 
 controller.on('facebook_postback', function (bot, message) {
     switch (message.payload) {
-        case 'show_cat':
-            bot.reply(message, {
-                attachment: {
-                    type: 'template',
-                    payload: {
-                        type: 'image',
-                        payload: {
-                            url: 'http://gph.is/1P7et4J'
-                        }
-                    }
-                }
-            })
+        case 'yes':
+            bot.reply(message, "How much do you want to bet" )
             break
-        case 'show_dog':
-            bot.reply(message, {
-                    attachment: {
-                        payload: {
-
-                            type: 'image',
-                            payload: {
-                                url: 'http://gph.is/1g2NU59'
-                            }
-                        }
-                    }
-                }
-            )
+        case 'no':
+            bot.reply(message,"Thank for playing the game with us")
             break
     }
 });
