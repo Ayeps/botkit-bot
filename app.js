@@ -67,16 +67,16 @@ controller.on('facebook_option', function (bot, message) {
 });
 
 
-controller.hears(['cookies'], 'message_received', function (bot, message) {
-
-    bot.startConversation(message, function (err, convo) {
-        convo.say('Did someone say cookies!?!!');
-        convo.ask('What is your favorite type of cookie?', function (response, convo) {
-            convo.say('Golly, I love ' + response.text + ' too!!!');
-            convo.next();
-        });
-    });
-});
+//controller.hears(['cookies'], 'message_received', function (bot, message) {
+//
+//    bot.startConversation(message, function (err, convo) {
+//        convo.say('Did someone say cookies!?!!');
+//        convo.ask('What is your favorite type of cookie?', function (response, convo) {
+//            convo.say('Golly, I love ' + response.text + ' too!!!');
+//            convo.next();
+//        });
+//    });
+//});
 
 
 controller.on('facebook_postback', function (bot, message) {
