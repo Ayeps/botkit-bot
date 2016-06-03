@@ -37,7 +37,7 @@ controller.setupWebserver(process.env.PORT || 5000, function (err, webserver) {
     controller.createWebhookEndpoints(controller.webserver, bot, function () {
         console.log('This bot is online!!!');
     });
-});
+})
 
 
 controller.on('facebook_optin', function (bot, message) {
@@ -64,8 +64,8 @@ controller.on('facebook_optin', function (bot, message) {
             }
         }
     })
-});
-controller.hears(['show'], function (bot, message) {
+})
+controller.hears(['show'], 'message_received', function (bot, message) {
     bot.reply(message, 'Hello');
     bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
     bot.reply(message, {
@@ -144,7 +144,7 @@ controller.hears(['cookies'], 'message_received', function (bot, message) {
             convo.next();
         });
     });
-});
+})
 
 
 controller.on('facebook_postback', function (bot, message) {
@@ -156,4 +156,4 @@ controller.on('facebook_postback', function (bot, message) {
             bot.reply(message, "Thank for playing the game with us")
             break
     }
-});
+})
