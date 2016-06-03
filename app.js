@@ -43,7 +43,7 @@ controller.setupWebserver(process.env.PORT || 5000, function (err, webserver) {
 controller.on('facebook_option', function (bot, message) {
     bot.reply(message, 'Hello');
     bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
-    bot.reply(message,{
+    bot.reply(message, {
         attachment: {
             type: 'template',
             payload: {
@@ -66,6 +66,15 @@ controller.on('facebook_option', function (bot, message) {
     })
 });
 
+controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
+    bot.reply(message, 'Hello');
+    bot.startConversation(message, function (err, convo) {
+        convo.ask('What is your name?', function (response, convo) {
+            convo.say('Ok  ' + response.text + ' Lets get Started!!!');
+            convo.next();
+        });
+    });
+})
 
 //controller.hears(['cookies'], 'message_received', function (bot, message) {
 //
@@ -82,10 +91,10 @@ controller.on('facebook_option', function (bot, message) {
 controller.on('facebook_postback', function (bot, message) {
     switch (message.payload) {
         case 'yes':
-            bot.reply(message, "How much do you want to bet" )
+            bot.reply(message, "How much do you want to bet")
             break
         case 'no':
-            bot.reply(message,"Thank for playing the game with us")
+            bot.reply(message, "Thank for playing the game with us")
             break
     }
 });
