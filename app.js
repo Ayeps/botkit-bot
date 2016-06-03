@@ -40,7 +40,7 @@ controller.setupWebserver(process.env.PORT || 5000, function (err, webserver) {
 });
 
 
-controller.on('facebook_option', function (bot, message) {
+controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Hello');
     bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
     bot.reply(message, {
