@@ -65,6 +65,34 @@ controller.on('facebook_optin', function (bot, message) {
         }
     })
 })
+
+
+controller.hears(['play'], 'message_received', function (bot, message) {
+    bot.reply(message, 'Hello');
+    bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
+    bot.reply(message, {
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'button',
+                text: 'Option',
+                buttons: [
+                    {
+                        type: 'postback',
+                        title: 'yes',
+                        payload: 'yes'
+                    },
+                    {
+                        type: 'postback',
+                        title: 'yes',
+                        payload: 'yes'
+                    }
+                ]
+            }
+        }
+    })
+})
+
 controller.hears(['show'], 'message_received', function (bot, message) {
     bot.reply(message, 'Hello');
     bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
