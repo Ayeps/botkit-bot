@@ -69,23 +69,23 @@ controller.on('facebook_optin', function (bot, message) {
 
 controller.hears(['play'], 'message_received', function (bot, message) {
     bot.reply(message, 'Hello');
-    bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
+    bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.!');
     bot.reply(message, {
         attachment: {
             type: 'template',
             payload: {
                 template_type: 'button',
-                text: 'Option',
+                text: 'Dealer.Would you like to play a round?!',
                 buttons: [
                     {
                         type: 'postback',
-                        title: 'yes',
+                        title: 'Yes',
                         payload: 'yes'
                     },
                     {
                         type: 'postback',
-                        title: 'yes',
-                        payload: 'yes'
+                        title: 'No',
+                        payload: 'no'
                     }
                 ]
             }
@@ -163,6 +163,16 @@ controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
     });
 })
 
+
+
+controller.hears(['bet', '^pattern$'], ['message_received'], function (bot, message) {
+
+    // do something to respond to message
+
+    bot.reply(message, 'your bet recieved!');
+
+});
+
 controller.hears(['cookies'], 'message_received', function (bot, message) {
 
     bot.startConversation(message, function (err, convo) {
@@ -178,6 +188,7 @@ controller.hears(['cookies'], 'message_received', function (bot, message) {
 controller.on('facebook_postback', function (bot, message) {
     switch (message.payload) {
         case 'yes':
+
             bot.reply(message, "How much do you want to bet")
             break
         case 'no':
