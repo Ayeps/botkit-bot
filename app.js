@@ -40,7 +40,7 @@ controller.setupWebserver(process.env.PORT || 5000, function (err, webserver) {
 })
 
 
-controller.on('facebook_optin', function (bot, message) {
+controller.on('facebook_option', function (bot, message) {
     bot.reply(message, 'Hello');
     bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
     bot.reply(message, {
@@ -164,12 +164,11 @@ controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
 })
 
 
-
 controller.hears(['bet', '^pattern$'], ['message_received'], function (bot, message) {
 
     // do something to respond to message
 
-    bot.reply(message, 'your bet recieved!');
+    bot.reply(message, 'your bet of ' + message.payload + 'recieved!');
 
 });
 
@@ -188,7 +187,6 @@ controller.hears(['cookies'], 'message_received', function (bot, message) {
 controller.on('facebook_postback', function (bot, message) {
     switch (message.payload) {
         case 'yes':
-
             bot.reply(message, "How much do you want to bet")
             break
         case 'no':
