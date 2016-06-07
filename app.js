@@ -71,12 +71,17 @@ controller.hears(['play'], 'message_received', function (bot, message) {
     bot.reply(message, 'Hello');
     bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.!');
     bot.reply(message, {
-        attachment: {
+        attachment: [{
             type: 'image',
             payload: {
                 url: 'http://deckofcardsapi.com/static/img/0S.png'
             }
-        }
+        }, {
+            type: 'image',
+            payload: {
+                url: 'http://deckofcardsapi.com/static/img/0C.png'
+            }
+        }]
     })
 })
 
