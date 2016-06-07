@@ -72,22 +72,9 @@ controller.hears(['play'], 'message_received', function (bot, message) {
     bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.!');
     bot.reply(message, {
         attachment: {
-            type: 'template',
+            type: 'image',
             payload: {
-                template_type: 'button',
-                text: 'Dealer.Would you like to play a round?!',
-                buttons: [
-                    {
-                        type: 'postback',
-                        title: 'Yes',
-                        payload: 'yes'
-                    },
-                    {
-                        type: 'postback',
-                        title: 'No',
-                        payload: 'no'
-                    }
-                ]
+                url: 'http://deckofcardsapi.com/static/img/0S.png'
             }
         }
     })
@@ -167,8 +154,63 @@ controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
 controller.hears(['bet', '^pattern$'], ['message_received'], function (bot, message) {
 
     // do something to respond to message
-
     bot.reply(message, 'your bet of ' + message.text + ' recieved!');
+    bot.reply(message,
+        {
+            attachment: {
+                type: "template",
+                payload: {
+                    template_type: "generic",
+                    elements: [
+                        {
+                            title: "Classic White T-Shirt",
+                            image_url: "http://petersapparel.parseapp.com/img/item100-thumb.png",
+                            subtitle: "Soft white cotton t-shirt is back in style",
+                            buttons: [
+                                {
+                                    type: "web_url",
+                                    url: "https://petersapparel.parseapp.com/view_item?item_id=100",
+                                    title: "View Item"
+                                },
+                                {
+                                    type: "postback",
+                                    url: "https://petersapparel.parseapp.com/buy_item?item_id=100",
+                                    payload: "HIT"
+                                },
+                                {
+                                    type: "postback",
+                                    title: "Bookmark Item",
+                                    payload: "STAND"
+                                }
+                            ]
+                        },
+                        {
+                            title: "Classic Grey T-Shirt",
+                            image_url: "http://petersapparel.parseapp.com/img/item101-thumb.png",
+                            subtitle: "Soft gray cotton t-shirt is back in style",
+                            buttons: [
+                                {
+                                    type: "web_url",
+                                    url: "https://petersapparel.parseapp.com/view_item?item_id=101",
+                                    title: "View Item"
+                                },
+                                {
+                                    type: "web_url",
+                                    url: "https://petersapparel.parseapp.com/buy_item?item_id=101",
+                                    title: "Buy Item"
+                                },
+                                {
+                                    type: "postback",
+                                    title: "Bookmark Item",
+                                    payload: "USER_DEFINED_PAYLOAD_FOR_ITEM101"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    );
 
 });
 
@@ -183,6 +225,10 @@ controller.hears(['cookies'], 'message_received', function (bot, message) {
     });
 })
 
+controller.hears('message_received', function (bot, message) {
+    bot.reply(message, 'Sorry i did not get that!');
+})
+
 
 controller.on('facebook_postback', function (bot, message) {
     switch (message.payload) {
@@ -192,5 +238,14 @@ controller.on('facebook_postback', function (bot, message) {
         case 'no':
             bot.reply(message, "Thank for playing the game with us")
             break
+        case 'hit':
+            //call function to perform hit operation
+            bot.reply(message, "you decided to hit")
+            break
+        case 'stand':
+            //call function to perform stand operation
+            bot.reply(message, "you decide to stand")
+            break
     }
 })
+
