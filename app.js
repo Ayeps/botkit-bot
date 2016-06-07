@@ -168,7 +168,7 @@ controller.hears(['bet', '^pattern$'], ['message_received'], function (bot, mess
 
     // do something to respond to message
 
-    bot.reply(message, 'your bet of ' + message.payload + 'recieved!');
+    bot.reply(message, 'your bet of ' + message.text + ' recieved!');
 
 });
 
