@@ -151,7 +151,18 @@ controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
 })
 
 
-controller.hears(['bet', '^pattern$'], ['message_received'], function (bot, message) {
+controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
+    controller.storage.users.get(message.user, function (err, user) {
+        if (user && user.name) {
+            bot.reply(message, 'Hello ' + user.name + '!!');
+        } else {
+            bot.reply(message, 'Hello.');
+        }
+    });
+})
+
+
+controller.hears(['^pattern$'], ['message_received'], function (bot, message) {
 
     // do something to respond to message
     bot.reply(message, 'your bet of ' + message.text + ' recieved!');
