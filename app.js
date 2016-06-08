@@ -91,11 +91,11 @@ controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
             convo.say('Ok  ' + response.text + ' Lets get Started!!!');
             convo.next();
         });
-        convo.on('end', function (convo) {
-            if (convo.status == 'completed') {
-                bot.reply(message, 'OK! I will get you that pizza...');
-            }
-        });
+        //convo.on('end', function (convo) {
+        //    if (convo.status == 'completed') {
+        //        bot.reply(message, 'OK! I will get you that pizza...');
+        //    }
+        //});
     })
 });
 
