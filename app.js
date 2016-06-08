@@ -89,7 +89,6 @@ controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.ask('What is your name?', function (response, convo) {
             convo.say('Ok  ' + response.text + ' Lets get Started!!!');
-            username = response.text;
             convo.next();
         });
         convo.on('end', function (convo) {
