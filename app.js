@@ -6,14 +6,11 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var Botkit = require('botkit');
 var app = express();
-
-app.set('port', (process.env.PORT || 5000));
-
+app.set('port', (process.env.PORT || 5000))
 // Process application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
-
 // Process application/json
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
 // Index route
 app.get('/', function (req, res) {
@@ -34,13 +31,13 @@ var bot = controller.spawn({});
 
 
 controller.setupWebserver(process.env.PORT || 5000, function (err, webserver) {
-    controller.createWebhookEndpoints(controller.webserver, bot, function () {
+    controller.createWebhookEndpoints(webserver, bot, function () {
         console.log('This bot is online!!!');
     });
 })
 
 
-controller.on('facebook_option', function (bot, message) {
+controller.on('facebook_optin', function (bot, message) {
     bot.reply(message, 'Hello');
     bot.reply(message, 'Hi, my name is Pepper and I am your Black Jack Dealer.Would you like to play a round?!');
     bot.reply(message, {
@@ -168,41 +165,14 @@ controller.hears(['^pattern$'], ['message_received'], function (bot, message) {
                             subtitle: "Soft white cotton t-shirt is back in style",
                             buttons: [
                                 {
-                                    type: "web_url",
-                                    url: "https://petersapparel.parseapp.com/view_item?item_id=100",
-                                    title: "View Item"
+                                    type: "postback",
+                                    title: "HIT",
+                                    payload: "hit"
                                 },
                                 {
                                     type: "postback",
-                                    url: "https://petersapparel.parseapp.com/buy_item?item_id=100",
-                                    payload: "HIT"
-                                },
-                                {
-                                    type: "postback",
-                                    title: "Bookmark Item",
-                                    payload: "STAND"
-                                }
-                            ]
-                        },
-                        {
-                            title: "Classic Grey T-Shirt",
-                            image_url: "http://petersapparel.parseapp.com/img/item101-thumb.png",
-                            subtitle: "Soft gray cotton t-shirt is back in style",
-                            buttons: [
-                                {
-                                    type: "web_url",
-                                    url: "https://petersapparel.parseapp.com/view_item?item_id=101",
-                                    title: "View Item"
-                                },
-                                {
-                                    type: "web_url",
-                                    url: "https://petersapparel.parseapp.com/buy_item?item_id=101",
-                                    title: "Buy Item"
-                                },
-                                {
-                                    type: "postback",
-                                    title: "Bookmark Item",
-                                    payload: "USER_DEFINED_PAYLOAD_FOR_ITEM101"
+                                    title: "STAND",
+                                    payload: "stand"
                                 }
                             ]
                         }
@@ -214,16 +184,15 @@ controller.hears(['^pattern$'], ['message_received'], function (bot, message) {
 
 });
 
-controller.hears(['cookies'], 'message_received', function (bot, message) {
-
-    bot.startConversation(message, function (err, convo) {
-        convo.say('Did someone say cookies!?!!');
-        convo.ask('What is your favorite type of cookie?', function (response, convo) {
-            convo.say('Golly, I love ' + response.text + ' too!!!');
-            convo.next();
-        });
-    });
-})
+//controller.hears(['cookies'], 'message_received', function (bot, message) {
+//    bot.startConversation(message, function (err, convo) {
+//        convo.say('Did someone say cookies!?!!');
+//        convo.ask('What is your favorite type of cookie?', function (response, convo) {
+//            convo.say('Golly, I love ' + response.text + ' too!!!');
+//            convo.next();
+//        });
+//    });
+//})
 
 controller.hears('message_received', function (bot, message) {
     bot.reply(message, 'Sorry i did not get that!');
