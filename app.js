@@ -4,7 +4,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
-var Botkit = require('botkit');
+var Botkit = require('./lib/lib/Botkit');
 var app = express();
 
 //variables to use
