@@ -99,6 +99,7 @@ controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
         });
     })
 });
+
 controller.hears(['bet', '^pattern$'], ['message_received'], function (bot, message) {
 
     // do something to respond to message
