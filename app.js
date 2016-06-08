@@ -141,17 +141,6 @@ controller.hears(['show'], 'message_received', function (bot, message) {
 
 
 controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
-    bot.reply(message, 'Hello');
-    bot.startConversation(message, function (err, convo) {
-        convo.ask('What is your name?', function (response, convo) {
-            convo.say('Ok  ' + response.text + ' Lets get Started!!!');
-            convo.next();
-        });
-    });
-})
-
-
-controller.hears(['hello', 'hi'], 'message_received', function (bot, message) {
     controller.storage.users.get(message.user, function (err, user) {
         if (user && user.name) {
             bot.reply(message, 'Hello ' + user.name + '!!');
